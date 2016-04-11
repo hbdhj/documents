@@ -1,9 +1,10 @@
 C++运算符重载
 [TOC]
-# Common operators to overload
-Most of the work in overloading operators is boiler-plate code. That is little wonder, since operators are merely syntactic sugar, their actual work could be done by (and often is forwarded to) plain functions. But it is important that you get this boiler-plate code right. If you fail, either your operator’s code won’t compile or your users’ code won’t compile or your users’ code will behave surprisingly.
+# 普通的算符重载
+绝大部分算符重载都是平淡无奇的代码。这一点也不奇怪，因为它们仅仅是语法“糖”，它们的功能可以通过（甚至经常转成）普通的函数。但把他们写对还是挺重要的，如果错了就会编译失败或者行为异常。Most of the work in overloading operators is boiler-plate code. That is little wonder, since operators are merely syntactic sugar, their actual work could be done by (and often is forwarded to) plain functions. But it is important that you get this boiler-plate code right. If you fail, either your operator’s code won’t compile or your users’ code won’t compile or your users’ code will behave surprisingly.
 
-## Assignment Operator
+## 赋值算符
+关于赋值有不少可说的，但绝大部分已经包含在GMan's著名的Copy-And-Swap FAQ了。这里仅举一例，以备参考。
 There's a lot to be said about assignment. However, most of it has already been said in GMan's famous Copy-And-Swap FAQ, so I'll skip most of it here, only listing the perfect assignment operator for reference:
 
 	X& X::operator=(X rhs)
@@ -12,7 +13,7 @@ There's a lot to be said about assignment. However, most of it has already been 
 	  return *this;
 	}
 
-## Bitshift Operators (used for Stream I/O)
+## 移位算符 (用于 Stream I/O)
 The bitshift operators << and >>, although still used in hardware interfacing for the bit-manipulation functions they inherit from C, have become more prevalent as overloaded stream input and output operators in most applications. For guidance overloading as bit-manipulation operators, see the section below on Binary Arithmetic Operators. For implementing your own custom format and parsing logic when your object is used with iostreams, continue.
 
 The stream operators, among the most commonly overloaded operators, are binary infix operators for which the syntax specifies no restriction on whether they should be members or non-members. Since they change their left argument (they alter the stream’s state), they should, according to the rules of thumb, be implemented as members of their left operand’s type. However, their left operands are streams from the standard library, and while most of the stream output and input operators defined by the standard library are indeed defined as members of the stream classes, when you implement output and input operations for your own types, you cannot change the standard library’s stream types. That’s why you need to implement these operators for your own types as non-member functions. The canonical forms of the two are these:
@@ -33,7 +34,7 @@ The stream operators, among the most commonly overloaded operators, are binary i
 
 	  return is;
 	}
-	
+
 When implementing operator>>, manually setting the stream’s state is only necessary when the reading itself succeeded, but the result is not what would be expected.
 
 ## Function call operator
@@ -81,7 +82,7 @@ The unary increment and decrement operators come in both prefix and postfix flav
 		return tmp;
 	  }
 	};
-	
+
 Note that the postfix variant is implemented in terms of prefix. Also note that postfix does an extra copy.2
 
 Overloading unary minus and plus is not very common and probably best avoided. If needed, they should probably be overloaded as member functions.
@@ -105,7 +106,7 @@ According to our rules of thumb, + and its companions should be non-members, whi
 	  lhs += rhs;
 	  return lhs;
 	}
-	
+
 operator+= returns its result per reference, while operator+ returns a copy of its result. Of course, returning a reference is usually more efficient than returning a copy, but in the case of operator+, there is no way around the copying. When you write a + b, you expect the result to be a new value, which is why operator+ has to return a new value.3 Also note that operator+ takes its left operand by copy rather than by const reference. The reason for this is the same as the reason giving for operator= taking its argument per copy.
 
 The bit manipulation operators ~ & | ^ << >> should be implemented in the same way as the arithmetic operators. However, (except for overloading << and >> for output and input) there are very few reasonable use cases for overloading these.
@@ -120,7 +121,7 @@ The array subscript operator is a binary operator which must be implemented as a
 	  const value_type& operator[](index_type idx) const;
 	  // ...
 	};
-	
+
 Unless you do not want users of your class to be able to change data elements returned by operator[] (in which case you can omit the non-const variant), you should always provide both variants of the operator.
 
 If value_type is known to refer to a built-in type, the const variant of the operator should return a copy instead of a const reference.
@@ -162,14 +163,14 @@ Implicit conversion operators, like one-argument constructors, are user-defined 
 
 	my_string str;
 	f(str); // same as f( str.operator const char*() )
-	
+
 At first this seems very helpful, but the problem with this is that the implicit conversion even kicks in when it isn’t expected to. In the following code, void f(const char*) will be called because my_string() is not an lvalue, so the first does not match:
 
 	void f(my_string&);
 	void f(const char*);
 
 	f(my_string());
-	
+
 Beginners easily get this wrong and even experienced C++ programmers are sometimes surprised because the compiler picks an overload they didn’t suspect. These problems can be mitigated by explicit conversion operators.
 
 ## Explicit Conversion Operators (C++11)
@@ -181,7 +182,7 @@ Unlike implicit conversion operators, explicit conversion operators will never k
 	private:
 	  const char* data_;
 	};
-	
+
 Notice the explicit. Now when you try to execute the unexpected code from the implicit conversion operators, you get a compiler error:
 
 	prog.cpp: In function ‘int main()’:
@@ -191,7 +192,7 @@ Notice the explicit. Now when you try to execute the unexpected code from the im
 	prog.cpp:11:10: note:   no known conversion for argument 1 from ‘my_string’ to ‘my_string&’
 	prog.cpp:12:10: note: void f(const char*)
 	prog.cpp:12:10: note:   no known conversion for argument 1 from ‘my_string’ to ‘const char*’
-	
+
 To invoke the explicit cast operator, you have to use static_cast, a C-style cast, or a constructor style cast ( i.e. T(value) ).
 
 However, there is one exception to this: The compiler is allowed to implicitly convert to bool. In addition, the compiler is not allowed to do another implicit conversion after it converts to bool (a compiler is allowed to do 2 implicit conversions at a time, but only 1 user-defined conversion at max).
@@ -210,11 +211,11 @@ The first of the basic rules of operator overloading – don’t do it – appli
 
 The C++ standard library comes with a set of predefined new and delete operators. The most important ones are these:
 
-	void* operator new(std::size_t) throw(std::bad_alloc); 
-	void  operator delete(void*) throw(); 
-	void* operator new[](std::size_t) throw(std::bad_alloc); 
-	void  operator delete[](void*) throw(); 
-	
+	void* operator new(std::size_t) throw(std::bad_alloc);
+	void  operator delete(void*) throw();
+	void* operator new[](std::size_t) throw(std::bad_alloc);
+	void  operator delete[](void*) throw();
+
 The first two allocate/deallocate memory for an object, the latter two for an array of objects. If you provide your own versions of these, they will not overload, but replace the ones from the standard library.
 If you overload operator new, you should always also overload the matching operator delete, even if you never intend to call it. The reason is that, if a constructor throws during the evaluation of a new expression, the run-time system will return the memory to the operator delete matching the operator new that was called to allocate the memory to create the object in. If you do not provide a matching operator delete, the default one is called, which is almost always wrong.
 If you overload new and delete, you should consider overloading the array variants, too.
@@ -226,19 +227,19 @@ So-called placement new allows you to create an object at a certain address whic
 	class X { /* ... */ };
 	char buffer[ sizeof(X) ];
 	void f()
-	{ 
+	{
 	  X* p = new(buffer) X(/*...*/);
-	  // ... 
-	  p->~X(); // call destructor 
-	} 
-	
+	  // ...
+	  p->~X(); // call destructor
+	}
+
 The standard library comes with the appropriate overloads of the new and delete operators for this:
 
-	void* operator new(std::size_t,void* p) throw(std::bad_alloc); 
-	void  operator delete(void* p,void*) throw(); 
-	void* operator new[](std::size_t,void* p) throw(std::bad_alloc); 
-	void  operator delete[](void* p,void*) throw(); 
-	
+	void* operator new(std::size_t,void* p) throw(std::bad_alloc);
+	void  operator delete(void* p,void*) throw();
+	void* operator new[](std::size_t,void* p) throw(std::bad_alloc);
+	void  operator delete[](void* p,void*) throw();
+
 Note that, in the example code for placement new given above, operator delete is never called, unless the constructor of X throws an exception.
 
 You can also overload new and delete with other arguments. As with the additional argument for placement new, these arguments are also listed within parentheses after the keyword new. Merely for historical reasons, such variants are often also called placement new, even if their arguments are not for placing an object at a specific address.
@@ -246,16 +247,16 @@ You can also overload new and delete with other arguments. As with the additiona
 ## Class-specific new and delete
 Most commonly you will want to fine-tune memory management because measurement has shown that instances of a specific class, or of a group of related classes, are created and destroyed often and that the default memory management of the run-time system, tuned for general performance, deals inefficiently in this specific case. To improve this, you can overload new and delete for a specific class:
 
-	class my_class { 
-	  public: 
-		// ... 
+	class my_class {
+	  public:
+		// ...
 		void* operator new();
 		void  operator delete(void*,std::size_t);
 		void* operator new[](size_t);
 		void  operator delete[](void*,std::size_t);
-		// ... 
-	}; 
-	
+		// ...
+	};
+
 Overloaded thus, new and delete behave like static member functions. For objects of my_class, the std::size_t argument will always be sizeof(my_class). However, these operators are also called for dynamically allocated objects of derived classes, in which case it might be greater than that.
 
 ## Global new and delete
