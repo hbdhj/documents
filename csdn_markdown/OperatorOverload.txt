@@ -1,10 +1,9 @@
-C++运算符重载
+operators overload
 [TOC]
-# 普通的算符重载
-绝大部分算符重载都是平淡无奇的代码。这一点也不奇怪，因为它们仅仅是语法“糖”，它们的功能可以通过（甚至经常转成）普通的函数。但把他们写对还是挺重要的，如果错了就会编译失败或者行为异常。Most of the work in overloading operators is boiler-plate code. That is little wonder, since operators are merely syntactic sugar, their actual work could be done by (and often is forwarded to) plain functions. But it is important that you get this boiler-plate code right. If you fail, either your operator’s code won’t compile or your users’ code won’t compile or your users’ code will behave surprisingly.
+# Common operators to overload
+Most of the work in overloading operators is boiler-plate code. That is little wonder, since operators are merely syntactic sugar, their actual work could be done by (and often is forwarded to) plain functions. But it is important that you get this boiler-plate code right. If you fail, either your operator’s code won’t compile or your users’ code won’t compile or your users’ code will behave surprisingly.
 
-## 赋值算符
-关于赋值有不少可说的，但绝大部分已经包含在GMan's著名的Copy-And-Swap FAQ了。这里仅举一例，以备参考。
+## Assignment Operator
 There's a lot to be said about assignment. However, most of it has already been said in GMan's famous Copy-And-Swap FAQ, so I'll skip most of it here, only listing the perfect assignment operator for reference:
 
 	X& X::operator=(X rhs)
@@ -13,8 +12,8 @@ There's a lot to be said about assignment. However, most of it has already been 
 	  return *this;
 	}
 
-## 移位算符 (用于 Stream I/O)
-移位算符 << 和 >>，虽然像原来的C中一样还能用于硬件处理比特，单在绝大多数程序中主要用于stream的输入和输出。对于用于比特操作的重载，请参见下面的比特算符部分。如果你想让你的对象能与iostreams操作，并有自己的格式和解析逻辑的话，请继续往下看。although still used in hardware interfacing for the bit-manipulation functions they inherit from C, have become more prevalent as overloaded stream input and output operators in most applications. For guidance overloading as bit-manipulation operators, see the section below on Binary Arithmetic Operators. For implementing your own custom format and parsing logic when your object is used with iostreams, continue.
+## Bitshift Operators (used for Stream I/O)
+The bitshift operators << and >>, although still used in hardware interfacing for the bit-manipulation functions they inherit from C, have become more prevalent as overloaded stream input and output operators in most applications. For guidance overloading as bit-manipulation operators, see the section below on Binary Arithmetic Operators. For implementing your own custom format and parsing logic when your object is used with iostreams, continue.
 
 The stream operators, among the most commonly overloaded operators, are binary infix operators for which the syntax specifies no restriction on whether they should be members or non-members. Since they change their left argument (they alter the stream’s state), they should, according to the rules of thumb, be implemented as members of their left operand’s type. However, their left operands are streams from the standard library, and while most of the stream output and input operators defined by the standard library are indeed defined as members of the stream classes, when you implement output and input operations for your own types, you cannot change the standard library’s stream types. That’s why you need to implement these operators for your own types as non-member functions. The canonical forms of the two are these:
 
