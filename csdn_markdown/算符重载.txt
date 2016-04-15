@@ -1,11 +1,10 @@
 C++运算符重载
 [TOC]
 # 普通的算符重载
-绝大部分算符重载都是平淡无奇的代码。这一点也不奇怪，因为它们仅仅是语法“糖”，它们的功能可以通过（甚至经常转成）普通的函数。但把他们写对还是挺重要的，如果错了就会编译失败或者行为异常。Most of the work in overloading operators is boiler-plate code. That is little wonder, since operators are merely syntactic sugar, their actual work could be done by (and often is forwarded to) plain functions. But it is important that you get this boiler-plate code right. If you fail, either your operator’s code won’t compile or your users’ code won’t compile or your users’ code will behave surprisingly.
+绝大部分算符重载都是平淡无奇的代码。这一点也不奇怪，因为它们仅仅是语法“糖”，它们的功能可以通过（甚至经常转成）普通的函数。但把他们写对还是挺重要的，如果错了就会编译失败或者行为异常。
 
 ## 赋值算符
-关于赋值有不少可说的，但绝大部分已经包含在GMan's著名的Copy-And-Swap FAQ了。这里仅举一例，以备参考。
-There's a lot to be said about assignment. However, most of it has already been said in GMan's famous Copy-And-Swap FAQ, so I'll skip most of it here, only listing the perfect assignment operator for reference:
+关于赋值算符有不少可说的，但绝大部分已经包含在GMan's著名的Copy-And-Swap FAQ了。这里仅举一例，以备参考。
 
 	X& X::operator=(X rhs)
 	{
@@ -14,7 +13,7 @@ There's a lot to be said about assignment. However, most of it has already been 
 	}
 
 ## 移位算符 (用于 Stream I/O)
-移位算符 << 和 >>，虽然像原来的C中一样还能用于硬件处理比特，单在绝大多数程序中主要用于stream的输入和输出。对于用于比特操作的重载，请参见下面的比特算符部分。如果你想让你的对象能与iostreams操作，并有自己的格式和解析逻辑的话，请继续往下看。although still used in hardware interfacing for the bit-manipulation functions they inherit from C, have become more prevalent as overloaded stream input and output operators in most applications. For guidance overloading as bit-manipulation operators, see the section below on Binary Arithmetic Operators. For implementing your own custom format and parsing logic when your object is used with iostreams, continue.
+移位算符 << 和 >>，虽然像原来的C中一样还能用于硬件处理比特，单在绝大多数程序中主要用于stream的输入和输出。对于用于比特操作的重载，请参见下面的比特算符部分。如果你想让你的对象能与iostreams操作，并有自己的格式和解析逻辑的话，请继续往下看。
 
 The stream operators, among the most commonly overloaded operators, are binary infix operators for which the syntax specifies no restriction on whether they should be members or non-members. Since they change their left argument (they alter the stream’s state), they should, according to the rules of thumb, be implemented as members of their left operand’s type. However, their left operands are streams from the standard library, and while most of the stream output and input operators defined by the standard library are indeed defined as members of the stream classes, when you implement output and input operations for your own types, you cannot change the standard library’s stream types. That’s why you need to implement these operators for your own types as non-member functions. The canonical forms of the two are these:
 
@@ -37,12 +36,12 @@ The stream operators, among the most commonly overloaded operators, are binary i
 
 When implementing operator>>, manually setting the stream’s state is only necessary when the reading itself succeeded, but the result is not what would be expected.
 
-## Function call operator
+## 函数调用算符
 The function call operator, used to create function objects, also known as functors, must be defined as a member function, so it always has the implicit this argument of member functions. Other than this it can be overloaded to take any number of additional arguments, including zero.
 
 Throughout the C++ standard library, function objects are always copied. Your own function objects should therefore be cheap to copy. If a function object absolutely needs to use data which is expensive to copy, it is better to store that data elsewhere and have the function object refer to it.
 
-## Comparison operators
+## 比较算符
 The binary infix comparison operators should, according to the rules of thumb, be implemented as non-member functions1. The unary prefix negation ! should (according to the same rules) be implemented as a member function. (but it is usually not a good idea to overload it.)
 
 The standard library’s algorithms (e.g. std::sort()) and types (e.g. std::map) will always only expect operator< to be present. However, the users of your type will expect all the other operators to be present, too, so if you define operator<, be sure to follow the third fundamental rule of operator overloading and also define all the other boolean comparison operators. The canonical way to implement them is this:
@@ -65,8 +64,8 @@ bool operator<(const X& rhs) const { /* do actual comparison with *this */ }
 
 2 It should be noted that the built-in version of || and && use shortcut semantics. While the user defined ones (because they are syntactic sugar for method calls) do not use shortcut semantics. User will expect these operators to have shortcut semantics, and their code may depend on it, Therefore it is highly advised NEVER to define them.
 
-## Arithmetic Operators
-### Unary arithmetic operators
+## 算术算符
+### 一元算术算符
 The unary increment and decrement operators come in both prefix and postfix flavor. To tell one from the other, the postfix variants take an additional dummy int argument. If you overload increment or decrement, be sure to always implement both prefix and postfix versions. Here is the canonical implementation of increment, decrement follows the same rules:
 
 	class X {
@@ -89,7 +88,7 @@ Overloading unary minus and plus is not very common and probably best avoided. I
 
 2 Also note that the postfix variant does more work and is therefore less efficient to use than the prefix variant. This is a good reason to generally prefer prefix increment over postfix increment. While compilers can usually optimize away the additional work of postfix increment for built-in types, they might not be able to do the same for user-defined types (which could be something as innocently looking as a list iterator). Once you got used to do i++, it becomes very hard to remember to do ++i instead when i is not of a built-in type (plus you'd have to change code when changing a type), so it is better to make a habit of always using prefix increment, unless postfix is explicitly needed.
 
-### Binary arithmetic operators
+### 二元算术算符
 For the binary arithmetic operators, do not forget to obey the third basic rule operator overloading: If you provide +, also provide +=, if you provide -, do not omit -=, etc. Andrew Koenig is said to have been the first to observe that the compound assignment operators can be used as a base for their non-compound counterparts. That is, operator + is implemented in terms of +=, - is implemented in terms of -= etc.
 
 According to our rules of thumb, + and its companions should be non-members, while their compound assignment counterparts (+= etc.), changing their left argument, should be a member. Here is the exemplary code for += and +, the other binary arithmetic operators should be implemented in the same way:
@@ -113,7 +112,7 @@ The bit manipulation operators ~ & | ^ << >> should be implemented in the same w
 
 3 Again, the lesson to be taken from this is that a += b is, in general, more efficient than a + b and should be preferred if possible.
 
-## Array Subscripting
+## 数组算符
 The array subscript operator is a binary operator which must be implemented as a class member. It is used for container-like types that allow access to their data elements by a key. The canonical form of providing these is this:
 
 	class X {
@@ -126,7 +125,7 @@ Unless you do not want users of your class to be able to change data elements re
 
 If value_type is known to refer to a built-in type, the const variant of the operator should return a copy instead of a const reference.
 
-## Operators for Pointer-like Types
+## 指针类算符
 For defining your own iterators or smart pointers, you have to overload the unary prefix dereference operator * and the binary infix pointer member access operator ->:
 
 	class my_ptr {
@@ -173,7 +172,7 @@ At first this seems very helpful, but the problem with this is that the implicit
 
 Beginners easily get this wrong and even experienced C++ programmers are sometimes surprised because the compiler picks an overload they didn’t suspect. These problems can be mitigated by explicit conversion operators.
 
-## Explicit Conversion Operators (C++11)
+## 显式类型转换算符 (C++11)
 Unlike implicit conversion operators, explicit conversion operators will never kick in when you don't expect them to. The following is a simple class with an explicit conversion operator:
 
 	class my_string {
@@ -199,7 +198,7 @@ However, there is one exception to this: The compiler is allowed to implicitly c
 
 Because the compiler will not cast "past" bool, explicit conversion operators now remove the need for the Safe Bool idiom. For example, smart pointers before C++11 used the Safe Bool idiom to prevent conversions to integral types. In C++11, the smart pointers use an explicit operator instead because the compiler is not allowed to implicitly convert to an integral type after it explicitly converted a type to bool.
 
-# Overloading new and delete
+# 重载 new 和 delete
 
 Note: This only deals with the syntax of overloading new and delete, not with the implementation of such overloaded operators. I think that the semantics of overloading new and delete deserve their own FAQ, within the topic of operator overloading I can never do it justice.
 
