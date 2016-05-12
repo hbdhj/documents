@@ -8,16 +8,16 @@
 |boost  |  heard  |  |  |  |  |
 |stl  |  mastered  |  |  |  |  |
 |valgrind  |  used  |  |  |  |  |
-|git  |  using  |  |  |  |  |
-|html  |  using  |  |  |  |  |
+|git  |  using  |  |  | codecademy |  |
+|html  |  using  |  |  | codecademy |  |
 |html5  |  heard  |  |  |  |  |
-|css  |  using  |  |  |  |  |
+|css  |  using  |  |  | codecademy |  |
 |css3  |  heard  |  |  |  |  |
-|jquery  |  tried  |  |  |  |  |
+|jquery  |  tried  |  |  | codecademy |  |
 |angularjs  |  tried  |  |  |  |  |
 |node.js  |  tried  |  |  |  |  |
 |express  |  heard  |  |  |  |  |
-|mysql  |  used  |  |  |  |  |
+|mysql  |  used  |  |  | codecademy |  |
 |mongodb  |  tried  |  |  |  |  |
 |spark  |  heard  |  |  |  |  |
 |rabbitmq  |  heard  |  |  |  |  |
@@ -27,7 +27,7 @@
 |spring framework  |  used  |  |  |  |  |
 |robot framework  |  used  |  |  |  |  |
 |selenium  |  used  |  |  |  |  |
-|python  |  using  |  |  |  |  |
+|python  |  using  |  |  | codecademy, codewars |  |
 |swift  |  tried  |  |  |  |  |
 |objective-c  |  tried  |  |  |  |  |
 |shell  |  using  |  |  |  |  |
@@ -36,11 +36,12 @@
 |socket  |  used  |  |  |  |  |
 |xml  |  used  |  |  |  |  |
 |json  |  tried  |  |  |  |  |
-|ruby  |  tried  |  |  |  |  |
-|ruby on rails  |  tried  |  |  |  |  |
+|ruby  |  tried  |  |  | codecademy |  |
+|ruby on rails  |  tried  |  |  | codecademy |  |
 |grub  |  heard  |  |  |  |  |
-|JavaScript  |  using  |  |  |  |  |
-|php  |  tried  |  |  |  |  |
+|Java  |  using  |  |  | codecademy |  |
+|JavaScript  |  using  |  |  | codecademy |  |
+|php  |  tried  |  |  | codecademy |  |
 |virtual machine  |  using  |  |  |  |  |
 |docker  |  used  |  |  |  |  |
 |zookeeper  |  heard  |  |  |  |  |
@@ -63,3 +64,4 @@
 |VBA  |  used  |  |  |  |  |
 |markdown  |  used  |  |  |  |  |
 |vargant  |  heard  |  |  |  |  |
+|AngularJS  |  heard  |  |  | codecademy |  |
