@@ -1,24 +1,23 @@
+|skill name | level | duration (month) | category |testimony / certification | projects |
 |-----------|-------|------------------| ---------|--------------------------|----------|
 |ajax  |  tried  |  |  |  |  |
 |algorithm  |  using  |  |  |  |  |
-|AngularJS  |  heard  |  |  | codecademy |  |
-|angularjs  |  tried  |  |  |  |  |
+|AngularJS  |  tried  |  |  | codecademy |  |
 |ansible  |  used  |  1  |  |  |  |
 |boost  |  heard  |  |  |  |  |
 |Cmake  |  used  |  3  |  |  |  |
-|css3  |  heard  |  |  |  |  |
 |css  |  using  |  |  | codecademy |  |
+|css3  |  heard  |  |  |  |  |
 |django  |  tried  |  |  |  |  |
 |docker  |  used  |  |  |  |  |
 |express  |  heard  |  |  |  |  |
 |gdb  |  mastered  |  12 |  |  |  |
 |git  |  using  |  |  | codecademy |  |
 |go  |  tried  |  |  |  |  |
-|grub  |  heard  |  |  |  |  |
 |grub  |  used  |  1 |  |  |  |
 |gsm  |  using  |  |  |  |  |
-|html5  |  heard  |  |  |  |  |
 |html  |  using  |  |  | codecademy |  |
+|html5  |  heard  |  |  |  |  |
 |httpd  |  used  |  |  |  |  |
 |iOS dev  |  tried  |  |  |  |  |
 |JavaScript  |  using  |  |  | codecademy |  |
@@ -46,11 +45,10 @@
 |rabbitmq  |  heard  |  |  |  |  |
 |robot framework  |  used  |  |  |  |  |
 |rpc  |  using  |  |  |  |  |
-|ruby on rails  |  tried  |  |  | codecademy |  |
 |ruby  |  tried  |  |  | codecademy |  |
+|ruby on rails  |  tried  |  |  | codecademy |  |
 |selenium  |  used  |  |  |  |  |
 |shell  |  using  |  |  |  |  |
-|skill name | level | duration (month) | category |testimony / certification | projects |
 |socket  |  used  |  |  |  |  |
 |spark  |  heard  |  |  |  |  |
 |spring framework  |  used  |  |  |  |  |
