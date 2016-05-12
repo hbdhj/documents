@@ -1,67 +1,67 @@
-|skill name | level | duration (month) | category |testimony / certification | projects |
 |-----------|-------|------------------| ---------|--------------------------|----------|
-|grub  |  used  |  1 |  |  |  |
-|ansible  |  used  |  1  |  |  |  |
-|gdb  |  mastered  |  12 |  |  |  |
-|Makefile  |  used  |  3 |  |  |  |
-|Cmake  |  used  |  3  |  |  |  |
-|boost  |  heard  |  |  |  |  |
-|stl  |  mastered  |  |  |  |  |
-|valgrind  |  used  |  |  |  |  |
-|git  |  using  |  |  | codecademy |  |
-|html  |  using  |  |  | codecademy |  |
-|html5  |  heard  |  |  |  |  |
-|css  |  using  |  |  | codecademy |  |
-|css3  |  heard  |  |  |  |  |
-|jquery  |  tried  |  |  | codecademy |  |
-|angularjs  |  tried  |  |  |  |  |
-|node.js  |  tried  |  |  |  |  |
-|express  |  heard  |  |  |  |  |
-|mysql  |  used  |  |  | codecademy |  |
-|mongodb  |  tried  |  |  |  |  |
-|spark  |  heard  |  |  |  |  |
-|rabbitmq  |  heard  |  |  |  |  |
-|nginx  |  tried  |  |  |  |  |
-|httpd  |  used  |  |  |  |  |
-|tomcat  |  used  |  |  |  |  |
-|spring framework  |  used  |  |  |  |  |
-|robot framework  |  used  |  |  |  |  |
-|selenium  |  used  |  |  |  |  |
-|python  |  using  |  |  | codecademy, codewars |  |
-|swift  |  tried  |  |  |  |  |
-|objective-c  |  tried  |  |  |  |  |
-|shell  |  using  |  |  |  |  |
-|rpc  |  using  |  |  |  |  |
-|msg queue  |  using  |  |  |  |  |
-|socket  |  used  |  |  |  |  |
-|xml  |  used  |  |  |  |  |
-|json  |  tried  |  |  |  |  |
-|ruby  |  tried  |  |  | codecademy |  |
-|ruby on rails  |  tried  |  |  | codecademy |  |
-|grub  |  heard  |  |  |  |  |
-|Java  |  using  |  |  | codecademy |  |
-|JavaScript  |  using  |  |  | codecademy |  |
-|php  |  tried  |  |  | codecademy |  |
-|virtual machine  |  using  |  |  |  |  |
-|docker  |  used  |  |  |  |  |
-|zookeeper  |  heard  |  |  |  |  |
-|go  |  tried  |  |  |  |  |
 |ajax  |  tried  |  |  |  |  |
-|django  |  tried  |  |  |  |  |
-|perl  |  heard  |  |  |  |  |
 |algorithm  |  using  |  |  |  |  |
-|gsm  |  using  |  |  |  |  |
-|lte  |  using  |  |  |  |  |
-|Windows GUI  |  worked  |  |  |  |  |
-|Linux GUI  |  worked  |  |  |  |  |
-|purify  |  heard  |  |  |  |  |
-|PureCoverage  |  used  |  |  |  |  |
-|wireshark  |  using  |  |  |  |  |
-|netfilter/iptables  |  heard  |  |  |  |  |
-|MAC OSX  |  using  |  |  |  |  |
-|iOS dev  |  tried  |  |  |  |  |
-|Powershell  |  heard  |  |  |  |  |
-|VBA  |  used  |  |  |  |  |
-|markdown  |  used  |  |  |  |  |
-|vargant  |  heard  |  |  |  |  |
 |AngularJS  |  heard  |  |  | codecademy |  |
+|angularjs  |  tried  |  |  |  |  |
+|ansible  |  used  |  1  |  |  |  |
+|boost  |  heard  |  |  |  |  |
+|Cmake  |  used  |  3  |  |  |  |
+|css3  |  heard  |  |  |  |  |
+|css  |  using  |  |  | codecademy |  |
+|django  |  tried  |  |  |  |  |
+|docker  |  used  |  |  |  |  |
+|express  |  heard  |  |  |  |  |
+|gdb  |  mastered  |  12 |  |  |  |
+|git  |  using  |  |  | codecademy |  |
+|go  |  tried  |  |  |  |  |
+|grub  |  heard  |  |  |  |  |
+|grub  |  used  |  1 |  |  |  |
+|gsm  |  using  |  |  |  |  |
+|html5  |  heard  |  |  |  |  |
+|html  |  using  |  |  | codecademy |  |
+|httpd  |  used  |  |  |  |  |
+|iOS dev  |  tried  |  |  |  |  |
+|JavaScript  |  using  |  |  | codecademy |  |
+|Java  |  using  |  |  | codecademy |  |
+|jquery  |  tried  |  |  | codecademy |  |
+|json  |  tried  |  |  |  |  |
+|Linux GUI  |  worked  |  |  |  |  |
+|lte  |  using  |  |  |  |  |
+|MAC OSX  |  using  |  |  |  |  |
+|Makefile  |  used  |  3 |  |  |  |
+|markdown  |  used  |  |  |  |  |
+|mongodb  |  tried  |  |  |  |  |
+|msg queue  |  using  |  |  |  |  |
+|mysql  |  used  |  |  | codecademy |  |
+|netfilter/iptables  |  heard  |  |  |  |  |
+|nginx  |  tried  |  |  |  |  |
+|node.js  |  tried  |  |  |  |  |
+|objective-c  |  tried  |  |  |  |  |
+|perl  |  heard  |  |  |  |  |
+|php  |  tried  |  |  | codecademy |  |
+|Powershell  |  heard  |  |  |  |  |
+|PureCoverage  |  used  |  |  |  |  |
+|purify  |  heard  |  |  |  |  |
+|python  |  using  |  |  | codecademy, codewars |  |
+|rabbitmq  |  heard  |  |  |  |  |
+|robot framework  |  used  |  |  |  |  |
+|rpc  |  using  |  |  |  |  |
+|ruby on rails  |  tried  |  |  | codecademy |  |
+|ruby  |  tried  |  |  | codecademy |  |
+|selenium  |  used  |  |  |  |  |
+|shell  |  using  |  |  |  |  |
+|skill name | level | duration (month) | category |testimony / certification | projects |
+|socket  |  used  |  |  |  |  |
+|spark  |  heard  |  |  |  |  |
+|spring framework  |  used  |  |  |  |  |
+|stl  |  mastered  |  |  |  |  |
+|swift  |  tried  |  |  |  |  |
+|tomcat  |  used  |  |  |  |  |
+|valgrind  |  used  |  |  |  |  |
+|vargant  |  heard  |  |  |  |  |
+|VBA  |  used  |  |  |  |  |
+|virtual machine  |  using  |  |  |  |  |
+|Windows GUI  |  worked  |  |  |  |  |
+|wireshark  |  using  |  |  |  |  |
+|xml  |  used  |  |  |  |  |
+|zookeeper  |  heard  |  |  |  |  |
