@@ -17,3 +17,19 @@
 ### 私企
 
 ## 地域
+
+# IT role
+## Software Engineer
+## Senior Software Engineer
+## Staff/Principle Software Engineer/Tech Lead
+## Architect
+## Chief Software Engineer
+## Chief Architect
+## Software Tester
+## Test Lead
+## Project Manager
+## Product Manager
+## Program Manager
+## Line Manager
+## Field Engineer/Post-sale
+## Pre-sale
