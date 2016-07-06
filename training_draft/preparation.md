@@ -12,9 +12,11 @@
 ## 积极完成项目
 ### 了解项目流程
 ### 基本工具和框架
-### 三高
-## 多种编程语言 Java，C，C++，python，JavaScript，bash，SQL
-## 编程 hackerrank leetcode codewars github stackoverflow
-## 推荐的书籍
-## 微信公众号
-## opensource projects
+### 在项目中考虑三高
+## 学习
+### 语言基础 Java，C，C++，python，JavaScript，bash，SQL
+### 算法学习 hackerrank leetcode codewars  stackoverflow
+### 推荐的书籍，微信公众号
+### 代码整理 github，opensource projects
+### 积累声誉
+### 学习网站  实验楼 七月算法公开课
