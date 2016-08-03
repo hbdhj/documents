@@ -299,7 +299,7 @@ A、执行过程组 Executing Processes
 B、规划过程组 Planning Processes
 C、监控过程组 Monitoring & Controlling Processes
 D、启动过程组 Initiating Processes
-答案：C
+答案：C ? 12
 
 44、 下面哪个关于范围变更控制的说法是正确的?
 A、范围变更控制从来都不需要和其它控制过程综合在一起
