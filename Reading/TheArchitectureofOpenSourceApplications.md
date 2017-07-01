@@ -31,7 +31,7 @@
 | Scalable Web Architecture and Distributed Systems | No |
 | Firefox Release Engineering | No |
 | FreeRTOS | No |
-| GDB | **_Todo_** |
+| GDB | **_Ongoing_** |
 | The Glasgow Haskell Compiler | No |
 | Git | **_Todo_** |
 | GPSD | No |
@@ -41,7 +41,7 @@
 | matplotlib | No |
 | MediaWiki | No |
 | Moodle | No |
-| nginx | **_Todo_** |
+| nginx | **_First_** |
 | Open MPI | No |
 | OSCAR | No |
 | Processing.js | No |
