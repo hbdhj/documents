@@ -1,10 +1,10 @@
 |chapter id | chapter name | status |
 |-----------|--------------|--------|
 | Chapter 1 | Introduction and Overview | First |
-| Chapter 2 | Process Management and Scheduling |No|
+| Chapter 2 | Process Management and Scheduling | No |
 | Chapter 3 | Memory Management | No |
-| Chapter 4 | Virtual Process Memory| No |
-| Chapter 5 | Locking and Inter process Communication| No |
+| Chapter 4 | Virtual Process Memory | No |
+| Chapter 5 | Locking and Inter process Communication | No |
 | Chapter 6 | Device Drivers | No |
 | Chapter 7 | Modules | No |
 | Chapter 8 | The Virtual File system | No |
@@ -22,6 +22,6 @@
 | Appendix A | Architecture Speciﬁcs | No |
 | Appendix B | Working with the Source Code | No |
 | Appendix C | Notes on C | No |
-| Appendix D | System Startup | No |
-| Appendix E | The ELF Binary Format | No |
+| Appendix D | System Startup | First |
+| Appendix E | The ELF Binary Format | First |
 | Appendix F | The Kernel Development Process | No |
