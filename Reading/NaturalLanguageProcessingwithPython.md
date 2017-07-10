@@ -1,7 +1,7 @@
 |chapter id | chapter name | status |
 |-----------|--------------|--------|
-| Chapter 1 | Language Processing and Python | No |
-| Chapter 2 | Accessing Text Corpora and Lexical Resources | No |
+| Chapter 1 | Language Processing and Python | First |
+| Chapter 2 | Accessing Text Corpora and Lexical Resources | First |
 | Chapter 3 | Process Raw Text | No |
 | Chapter 4 | Writing Structured Programs | No |
 | Chapter 5 | Categorizing and Tagging Works | No |
