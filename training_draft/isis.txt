@@ -1,0 +1,149 @@
+IS-IS
+What is IS-IS
+  The prferred routing protocol of modern ISPs
+  The OSI Model was never meant to be just a model
+    The OSI protocol, the alternative to the TCP/IP Model
+    OSI is more complicated than TCP/IP
+  In OSI terminology, a router = an intermediate system
+  IS-IS was the routing protocol created for OSI
+  Originally deployed by ISPs due to government regulations
+IS-IS history and background
+  The original implementation of IS-IS was modified to accomodate TCP/IP, Integrated IS-IS was born
+  Integrated IS-IS still requires an OSI address, called a connectionless network services (CLNS) address to function
+  The facts:
+    Link State
+    Uses SPF
+    Uses hello messages
+    More tunable than OSPF
+      better resource utilization of device
+    More flexible than OSPF
+      less restriction on deployment
+    Much more difficult to understand than OSPF
+
+Understanding the design of IS-IS
+  An IS-IS is only belongs to 1 area
+  L1 router
+    maintains routing information for area they belongs to
+  L2 router
+    maintains routes for just the backbone
+  L1/L2 router
+    maintains routes for specific areas and the backbone
+    L1/L2 routers are used to move between areas
+  L1 routers use L1/L2 routers to leave there network
+
+More IS-IS facts
+  The metric of IS-IS is not based on bandwidth but rather a value of 0-63, where 10 is the default
+    the value is user defined, 0 could be a 10gig connection, 1 could be 1gig and so forth
+  In OSI, End Systems (ES) would participate in routing, by finding their closet IS, known as an IS-SI
+    similar to DHCP giving a default gateway
+  L1 and L2 routers form like relationships and maintain separate database
+    L1 will not form relationships with L2 router,
+      what will work is L1----L1/L2-----L2, You would have to specify the network type under the routing process
+  The L1/L2 router is similar to OSPF ABR
+
+Comparing IS-IS and OSPF
+  Routing domain
+    Level 0
+      ES-IS
+      Stub routing
+    Level 1
+      L1 routers in the same area
+      Transit or intra area
+    Level 2
+      L2 is routing between areas
+      Inter area or transit
+    Level 3
+      routing out of your domain
+      intra area external or inter area external
+    IS-IS specifics
+      handles updates more efficiently
+        it batches the updates
+      rarely runs the spf algorithm, prefers using partial route calculation(PRC)
+      is much faster by default, to detect failures and coverage
+      has less design constrains
+      very easy to adapt to IPv6
+
+Understanding NSAP Addressing
+  OSI uses CLNP, connectionless network protocol address
+  when you assign a CLNP address to a router, it is called a NSAP, network service access point address
+  only one address needed per node, not per interface
+  NSAP addresses can be up to 20 bytes in length
+  The original implementation of OSI defined more than five fields that the NSAP address would represent
+  Cisco's implementation of IS-IS only three of those fields
+    the area address
+    the system id
+    the NSAP selector, NSEL
+  the idea is to look like this
+    49.123.aa15.b322.1841.00
+      NSEL
+        00<----
+      system id
+        aa15.b322.1841<----
+      area
+        49.123<----
+
+Applying NSAP address to Cisco routers
+  Rules of the NSAP address
+    it can be up to 20 bytes
+    last byte of address is always 00, representing an IS
+    system id is always a fixed 6 bytes in length, similiar to OSPF router id
+    The best way to read the address is from right to left, starting from 00 and going left until you hit 49
+    The MAC address is commonly used to identify the IS
+    49 is considered a private address
+
+IS-IS routes packets
+  IS checks a packet destination
+    if different area, routes based on the area address
+    if same area, routes based on the system id
+  If it is a L1 router
+    inter-area packets sent to closet L1/L2 router
+    intra-area packets are routed based on L1 database
+  If it is a L2 router
+    inter-area packets are routed based on L2 database
+    intra-area packets are routed based on L1 database
+
+IS-IS packet types:
+  Packet = PDU, protocol data unit
+  network layer packet, network pdu
+  data link layer frame, data link pdu
+  type
+    hello
+    link state packet, LSP
+    partial sequence number pdu, PSNP
+      this is an acknowledgement to a LSP update
+        this can also be a request for an update
+    complete sequence number pdu CSNP
+      this is a summary of the databbse, like OSPF
+
+  +------+-------+-------+-------+
+  |LSP   | TLV   | TLV   | TLV   |
+  |HDR   |       |       |       |....... there are more than these three
+  +------+-------+-------+-------+
+
+  LSP HDR
+    Contains PDU type, length, seq. number and life time
+  L TLV
+    Contains IS neighbor
+  M TLV
+    Contains authentication information
+  R TLV
+    Contains attached IP subnet information
+
+IS-IS
+  two network type supported
+    broadcast
+    point to point
+  broadcast mode assumes full connectivity, all IS's cna reach each other
+  broadcast mode elects a designated IS, DIS, that performs the same role as DR/DBR in OSPF
+  when dealing with NBMA networks, point to point mode, subinterfaces, is the preferred design
+  broadcast uses ulticast, point to point uses unicast
+
+  Keeping databases sync'd
+    LSP's are sent containing detailed route updates
+    PSNPs are sent for two reasons
+      to acknowledge LSPs
+      to request missing LSPs
+
+    CSNPs are sent once every 10 seconds in broadcast networks
+    in point to point networks
+      only once, when the link activates
